@@ -1,5 +1,8 @@
 const default_d = 16
 const default_c = "black"
+const clear = document.getElementById("clear")
+
+clear.onclick = () => reloadGrid();
 
 const container = document.querySelector("#container");
 
@@ -24,8 +27,17 @@ for (let x = 0; x < size * size; x++) {
 function changeColor(e) {
     if (e.type === "mouseover" && !mouseDown) return
     e.target.style.backgroundColor = "red"
+};
+
+function clearGrid() {
+    grid.innerHTML = "";
+};
+
+function reloadGrid() {
+    clearGrid();
+    setupGrid(default_d);
 }
 
 window.onload = () => {
-    setupGrid(default_d)
-}
+    setupGrid(default_d);
+};
