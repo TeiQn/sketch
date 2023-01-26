@@ -1,0 +1,10 @@
+#container {
+    display: grid;
+    grid-template-columns: repeat(16, 1fr);
+    grid-template-rows: auto;
+    gap: 1px;
+}
+
+.turned {
+    background-color: black;
+}
