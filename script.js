@@ -48,7 +48,7 @@ function changeColor(e) {
         const randomR = Math.floor(Math.random() * 256)
         const randomG = Math.floor(Math.random() * 256)
         const randomB = Math.floor(Math.random() * 256)
-        e.target.style.backgroundColor = `rgb(${randomR}, ${randomG}, ${randomB})`
+        e.target.style.backgroundColor = `rgb(${randomR}, ${randomG}, ${randomB})`;
     } else if (currentMode === default_m){
     e.target.style.backgroundColor = currentColor;
     }
