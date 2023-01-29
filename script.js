@@ -1,13 +1,19 @@
 const default_d = 16;
 const default_c = "black";
+const default_m = "default";
 const clear = document.getElementById("clear");
 const sizeSubmit = document.querySelector(".sizeSubmit");
 const gridSize = document.querySelector(".gridSize");
+const setColor = document.querySelector(".setColor");
+const colorSubmit = document.querySelector(".colorSubmit");
+const rainbow = document.getElementById("rainbow");
 
 let currentColor = default_c;
 let currentSize = default_d;
+let currentMode = default_m;
 
 clear.onclick = () => reloadGrid();
+rainbow.onclick = () => rainbowify();
 
 const container = document.querySelector("#container");
 
@@ -38,7 +44,14 @@ function setupGrid(size){
 
 function changeColor(e) {
     if (e.type === "mouseover" && !mouseDown) return;
-    e.target.style.backgroundColor = "black";
+    if (currentMode === "rainbowified") {
+        const randomR = Math.floor(Math.random() * 256)
+        const randomG = Math.floor(Math.random() * 256)
+        const randomB = Math.floor(Math.random() * 256)
+        e.target.style.backgroundColor = `rgb(${randomR}, ${randomG}, ${randomB})`
+    } else if (currentMode === default_m){
+    e.target.style.backgroundColor = currentColor;
+    }
 };
 
 function clearGrid() {
@@ -48,6 +61,8 @@ function clearGrid() {
 function reloadGrid() {
     clearGrid();
     setupGrid(currentSize);
+    gridSize.value = "";
+    setColor.value = "";
 }
 
 window.onload = () => {
@@ -55,8 +70,18 @@ window.onload = () => {
 };
 
 sizeSubmit.addEventListener("click", changeDim);
+colorSubmit.addEventListener("click", switchColor);
 
 function changeDim(){
     currentSize = Number(gridSize.value);
     reloadGrid();
+};
+
+function switchColor(){
+    currentColor = String(setColor.value);
+    currentMode = default_m;
+};
+
+function rainbowify(){
+   currentMode = "rainbowified";
 };
