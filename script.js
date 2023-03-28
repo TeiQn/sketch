@@ -30,6 +30,7 @@ let mouseDown = false;
 document.body.onmousedown = () => (mouseDown = true);
 document.body.onmouseup = () => (mouseDown = false);
 
+/"Creates the grid where the drawing occurs."/
 function setupGrid(size){
     grid.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
     grid.style.gridTemplateRows = `repeat(${size}, 1fr)`;
@@ -42,6 +43,7 @@ function setupGrid(size){
 }
 };
 
+/"Changes the color of the palette."/
 function changeColor(e) {
     if (e.type === "mouseover" && !mouseDown) return;
     if (currentMode === "rainbowified") {
@@ -54,10 +56,12 @@ function changeColor(e) {
     }
 };
 
+/"Erases the drawing."/
 function clearGrid() {
     grid.innerHTML = "";
 };
 
+/"Loads a new grid with the set parameters."/
 function reloadGrid() {
     clearGrid();
     setupGrid(currentSize);
@@ -72,10 +76,12 @@ window.onload = () => {
 sizeSubmit.addEventListener("click", changeDim);
 colorSubmit.addEventListener("click", switchColor);
 
+/"Changes the grid size"/
 function changeDim(){
     currentSize = Number(gridSize.value);
     reloadGrid();
 };
+
 
 function switchColor(){
     currentColor = String(setColor.value);
